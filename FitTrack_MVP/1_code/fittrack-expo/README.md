@@ -1,92 +1,132 @@
-# FitTrack - Exercise Tracking App
+# FitTrack Mobile App
 
-A modern, sleek fitness tracking application built with React Native and Expo.
+React Native + Expo implementation of the FitTrack fitness application.
 
-## Overview
+![App Preview](../../docs/images/app-preview.png)
+<!-- Add your screenshot here -->
 
-FitTrack allows users to:
-- Track daily workout activities
-- Analyze exercise form
-- View workout statistics
-- Manage workout routines
+## Features
 
-## Navigation Structure
+- Modern dark theme with purple accents
+- Smooth animations and transitions
+- Offline-first architecture
+- Cross-platform (iOS & Android)
 
-The app uses Expo Router for navigation with a stack-based structure:
+## Prerequisites
 
-### Main Screens
+- Node.js 18+
+- npm or yarn
+- Expo CLI (`npm install -g expo-cli`)
+- Android Studio (for Android development)
+- Xcode (for iOS development, macOS only)
 
-1. **Home Screen** (`/app/index.tsx`)
-   - Daily statistics (calories, minutes, workouts)
-   - Quick action buttons (Add Workout, Analyze Form, Stats)
-   - Today's workout plan with exercise details
-   - Modern card-based UI with progress indicators
-
-2. **Add Workout Screen** (`/app/add-workout.tsx`)
-   - Form to create new workouts
-   - Fields for workout name, type, duration, difficulty
-   - Dynamic exercise list management
-   - Clean, minimalist design
-
-3. **Analyze Form Screen** (`/app/analyze-form.tsx`)
-   - Camera interface for exercise form analysis
-   - Exercise type selection
-   - Real-time feedback visualization
-   - Analysis results with strengths and improvement areas
-
-## Key UI Features
-
-### Modern Design Elements
-
-- Dark theme (#121212 base) with teal accents (#00C3A3)
-- Card-based content presentation
-- Progress indicators for goals
-- Clean typography with proper spacing
-- Consistent iconography (Ionicons)
-
-### Navigation Components
-
-- Top bar with menu and profile access
-- Action buttons section below stats
-- Back navigation for secondary screens
-- Smooth transitions between screens
-
-## Development Notes
-
-### Dependencies
-
-- `@expo/vector-icons` - For UI icons
-- `expo-router` - For navigation
-
-### Code Structure
-
-- Each screen is a separate file in the app directory
-- Navigation routes are defined in `_layout.tsx`
-- Consistent styling approach using StyleSheet
-- Shared components like headers and cards
-
-### Styling Constants
-
-- Primary color: #00C3A3 (teal)
-- Background colors: #121212, #1A1A1A, #1D1D1D
-- Text colors: #fff (primary), #888 (secondary), #666 (tertiary)
-- Border radius: 8-12px for cards and buttons
-- Consistent padding and margins for UI spacing
-
-## Getting Started
+## Installation
 
 1. Install dependencies:
-   ```
-   npm install
-   ```
+```bash
+npm install
+```
 
-2. Start the development server:
-   ```
-   npx expo start
-   ```
+2. Install Expo Go on your mobile device or set up an emulator
 
-3. Run on Android or iOS simulator, or scan the QR code with Expo Go app
+3. Configure environment variables:
+```bash
+cp .env.example .env
+```
 
-## Screenshots
+## Development
 
-(Screenshots will be added here)
+Start the development server:
+```bash
+npx expo start
+```
+
+### Running on Devices
+
+- **iOS Simulator**: Press `i` in the terminal
+- **Android Emulator**: Press `a` in the terminal
+- **Physical Device**: Scan QR code with Expo Go app
+
+## Project Structure
+
+```
+fittrack-expo/
+├── app/                 # App screens
+├── assets/             # Images, fonts, etc.
+├── components/         # Reusable UI components
+├── constants/          # Theme, config, etc.
+├── hooks/              # Custom React hooks
+├── navigation/         # Navigation setup
+├── services/           # API clients
+└── utils/              # Helper functions
+```
+
+## Code Style
+
+- Follow TypeScript best practices
+- Use functional components with hooks
+- Implement proper error handling
+- Write meaningful comments
+- Follow the established project structure
+
+## Testing
+
+```bash
+# Run unit tests
+npm test
+
+# Run e2e tests
+npm run e2e
+```
+
+## Building for Production
+
+1. Configure app.json:
+```json
+{
+  "expo": {
+    "name": "FitTrack",
+    "version": "1.0.0",
+    ...
+  }
+}
+```
+
+2. Build for Android:
+```bash
+eas build -p android
+```
+
+3. Build for iOS:
+```bash
+eas build -p ios
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. Metro bundler issues:
+```bash
+expo start --clear
+```
+
+2. Dependencies conflicts:
+```bash
+rm -rf node_modules
+npm install
+```
+
+3. Android build errors:
+```bash
+cd android
+./gradlew clean
+```
+
+## Contributing
+
+Please read the main project's CONTRIBUTING.md for guidelines.
+
+## License
+
+MIT - see the main project's LICENSE file for details.

@@ -1,59 +1,96 @@
 # FitTrack MVP
 
-A comprehensive fitness tracking application with AI-powered recommendations and pose analysis.
+A modern fitness tracking application built with React Native and Expo, featuring a sleek dark theme with purple accents.
 
-## Project Structure
-
-The FitTrack MVP project is organized into the following structure:
-
-```
-FitTrack_MVP/
-├── 1_code/                      # All source code
-│   ├── mobile_app/              # React Native mobile application
-│   ├── backend_api/             # Node.js + Express REST API
-│   ├── ai_services/             # Python FastAPI AI microservices
-│   └── README1.txt              # Code setup instructions
-├── 2_data_collection/           # Data collection and generation
-│   ├── scripts/                 # Data generation scripts
-│   └── README2.txt              # Data collection instructions
-├── 3_basic_function_testing/    # Test suites
-│   ├── mobile_tests/            # Mobile app tests
-│   ├── api_tests/               # Backend API tests
-│   ├── ai_tests/                # AI services tests
-│   └── README3.txt              # Testing instructions
-└── documentation/               # Project documentation
-```
-
-## Getting Started
-
-For detailed setup instructions, please refer to the README files in each section:
-
-1. [Code Setup Instructions](./1_code/README1.txt)
-2. [Data Collection Instructions](./2_data_collection/README2.txt)
-3. [Testing Instructions](./3_basic_function_testing/README3.txt)
+![FitTrack Main Screen](./docs/images/main-screen.png)
+<!-- Add your screenshot here -->
 
 ## Features
 
-- User authentication and profile management
-- Workout tracking and logging
-- AI-powered form analysis using computer vision
-- Personalized workout and nutrition recommendations
-- Progress visualization and reporting
+- **Workout Logging**: Track exercises, sets, reps, and duration
+- **Personalized Plans**: Create custom workout plans with AI assistance
+- **Progress Tracking**: Monitor your fitness journey with detailed statistics
+- **Dark Theme**: Eye-friendly interface with purple accents
+- **Form Analysis**: AI-powered exercise form feedback
+- **Nutrition Tracking**: Log meals and monitor calorie intake
+
+## Project Structure
+
+```
+FitTrack_MVP/
+├── 1_code/               # Source code
+│   ├── fittrack-expo/    # Mobile app (React Native + Expo)
+│   ├── backend_api/      # Backend services
+│   └── ai_services/      # AI/ML components
+├── 2_data_collection/    # Training data and analytics
+└── 3_basic_function_testing/  # Test cases and QA
+```
 
 ## Tech Stack
 
-- **Mobile App**: React Native, TypeScript, Redux Toolkit, React Navigation
-- **Backend API**: Node.js, Express, TypeScript, Firebase (Auth & Firestore)
-- **AI Services**: Python, FastAPI, TensorFlow, OpenCV
+- **Frontend**: React Native, Expo
+- **Backend**: Node.js, Express
+- **AI Services**: Python, TensorFlow
+- **Database**: MongoDB
+- **Authentication**: Firebase
 
-## Development Process
+## Getting Started
 
-1. Clone the repository
-2. Set up each component following the instructions in README1.txt
-3. Generate test data using the scripts in the data_collection directory
-4. Run the tests to ensure everything is working correctly
-5. Start developing new features
+1. Clone the repository:
+```bash
+git clone https://github.com/madhavcodez/FitTrack.git
+```
+
+2. Install dependencies:
+```bash
+cd FitTrack_MVP/1_code/fittrack-expo
+npm install
+```
+
+3. Start the development server:
+```bash
+npx expo start
+```
+
+## Screenshots
+
+### Log Workout
+![Log Workout](./docs/images/log-workout.png)
+<!-- Add your screenshot here -->
+
+### Create Plan
+![Create Plan](./docs/images/create-plan.png)
+<!-- Add your screenshot here -->
+
+### Form Analysis
+![Form Analysis](./docs/images/form-analysis.png)
+<!-- Add your screenshot here -->
+
+## Development Status
+
+Current version: MVP 1.0
+- [x] Basic UI Implementation
+- [x] Theme Integration
+- [x] Workout Logging
+- [x] Plan Creation
+- [ ] Backend Integration
+- [ ] AI Form Analysis
+- [ ] User Authentication
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Design inspiration from modern fitness apps
+- UI components from React Native Paper
+- Icons from Ionicons 
