@@ -9,17 +9,14 @@ import {
   Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { addWorkout } from '../store/reducers/workoutReducer';
-import axios from 'axios';
+import { useAddWorkoutMutation } from '../store/api';
 
 const WorkoutScreen = () => {
   const [workoutName, setWorkoutName] = useState('');
   const [workoutType, setWorkoutType] = useState('');
   const [exercises, setExercises] = useState([{ name: '', sets: '', reps: '', weight: '' }]);
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const token = useSelector((state: any) => state.auth.token);
+  const [addWorkout, { isLoading }] = useAddWorkoutMutation();
 
   const addExercise = () => {
     setExercises([...exercises, { name: '', sets: '', reps: '', weight: '' }]);
@@ -50,23 +47,14 @@ const WorkoutScreen = () => {
     }));
 
     try {
-      const response = await axios.post(
-        'http://localhost:5000/api/workouts',
-        {
-          name: workoutName,
-          type: workoutType,
-          exercises: formattedExercises,
-          duration: 30, // Default duration, can be made dynamic
-          difficulty: 'intermediate', // Default difficulty, can be made dynamic
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      dispatch(addWorkout(response.data));
+      await addWorkout({
+        name: workoutName,
+        type: workoutType,
+        exercises: formattedExercises,
+        duration: 30, // Default duration, can be made dynamic
+        difficulty: 'intermediate', // Default difficulty, can be made dynamic
+      }).unwrap();
+      
       Alert.alert('Success', 'Workout logged successfully');
       navigation.goBack();
     } catch (error) {
@@ -138,8 +126,14 @@ const WorkoutScreen = () => {
           <Text style={styles.addButtonText}>Add Exercise</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <Text style={styles.submitButtonText}>Save Workout</Text>
+        <TouchableOpacity 
+          style={[styles.submitButton, isLoading && styles.disabledButton]} 
+          onPress={handleSubmit}
+          disabled={isLoading}
+        >
+          <Text style={styles.submitButtonText}>
+            {isLoading ? 'Saving...' : 'Save Workout'}
+          </Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -217,6 +211,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  disabledButton: {
+    backgroundColor: '#ccc',
   },
 });
 

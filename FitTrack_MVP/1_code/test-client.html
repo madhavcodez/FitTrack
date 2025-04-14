@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitTrack API Tester</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .container { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 4px; }
+        h2 { margin-top: 0; }
+        button { background: #6200ee; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #5000d6; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow: auto; }
+        input, select { margin-bottom: 10px; padding: 8px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>FitTrack API Tester</h1>
+    
+    <div class="container">
+        <h2>Backend API Health Check</h2>
+        <button onclick="testBackendAPI()">Test Backend API</button>
+        <pre id="apiResult">Results will appear here...</pre>
+    </div>
+    
+    <div class="container">
+        <h2>AI Service Health Check</h2>
+        <button onclick="testAIService()">Test AI Service</button>
+        <pre id="aiResult">Results will appear here...</pre>
+    </div>
+    
+    <div class="container">
+        <h2>Login to Backend</h2>
+        <input type="email" id="email" placeholder="Email" value="test@example.com">
+        <input type="password" id="password" placeholder="Password" value="password123">
+        <button onclick="login()">Login</button>
+        <pre id="loginResult">Results will appear here...</pre>
+    </div>
+    
+    <div class="container">
+        <h2>Get Workouts (Requires Login)</h2>
+        <button onclick="getWorkouts()">Get Workouts</button>
+        <pre id="workoutsResult">Results will appear here...</pre>
+    </div>
+    
+    <script>
+        let authToken = '';
+        
+        async function testBackendAPI() {
+            const resultElement = document.getElementById('apiResult');
+            resultElement.textContent = 'Testing backend API...';
+            
+            try {
+                const response = await fetch('http://localhost:5001/health', {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultElement.textContent = `Status: ${response.status}\nData: ${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultElement.textContent = `Error: ${response.status}\nMessage: ${response.statusText}`;
+                }
+            } catch (error) {
+                resultElement.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        async function testAIService() {
+            const resultElement = document.getElementById('aiResult');
+            resultElement.textContent = 'Testing AI service...';
+            
+            try {
+                const response = await fetch('http://localhost:5002/health', {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultElement.textContent = `Status: ${response.status}\nData: ${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultElement.textContent = `Error: ${response.status}\nMessage: ${response.statusText}`;
+                }
+            } catch (error) {
+                resultElement.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        async function login() {
+            const resultElement = document.getElementById('loginResult');
+            resultElement.textContent = 'Logging in...';
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('http://localhost:5001/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    authToken = data.token;
+                    resultElement.textContent = `Status: ${response.status}\nAuthenticated: ${!!authToken}\nUser: ${JSON.stringify(data.user, null, 2)}`;
+                } else {
+                    resultElement.textContent = `Error: ${response.status}\nMessage: ${response.statusText}`;
+                }
+            } catch (error) {
+                resultElement.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        async function getWorkouts() {
+            const resultElement = document.getElementById('workoutsResult');
+            resultElement.textContent = 'Getting workouts...';
+            
+            if (!authToken) {
+                resultElement.textContent = 'Error: You must login first!';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:5001/workouts', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultElement.textContent = `Status: ${response.status}\nWorkouts: ${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultElement.textContent = `Error: ${response.status}\nMessage: ${response.statusText}`;
+                }
+            } catch (error) {
+                resultElement.textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html> 

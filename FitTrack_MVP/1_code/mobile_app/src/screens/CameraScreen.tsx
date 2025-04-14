@@ -50,7 +50,7 @@ const CameraScreen = () => {
           const base64data = reader.result?.toString().split(',')[1];
           
           // Send to AI service
-          const aiResponse = await axios.post('http://localhost:5001/analyze_form', {
+          const aiResponse = await axios.post('http://localhost:5002/analyze_form', {
             image: base64data,
             exercise_type: exerciseType,
           });

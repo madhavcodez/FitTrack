@@ -1,3 +1,9 @@
 rootProject.name = 'FitTrack'
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
+
+// Include React Native modules manually
+include ':react-native-community-cli'
+project(':react-native-community-cli').projectDir = new File(rootProject.projectDir, '../node_modules/react-native/cli')
+
+// This is the simple file-based approach without using the React Native Gradle plugin
+// Simply includes packages rather than trying to use the plugin that's causing issues

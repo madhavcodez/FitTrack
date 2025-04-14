@@ -1,0 +1,13 @@
+// React Native Vector Icons
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+// Disable TurboModule enforcement - place at the top of the file, not at the end
+project.ext.react = [
+    enableHermes: false,
+    newArchEnabled: false,
+]
+
+// Add the react-native-vector-icons configuration
+project.ext.vectoricons = [
+    iconFontNames: [ 'Ionicons.ttf' ]
+] 

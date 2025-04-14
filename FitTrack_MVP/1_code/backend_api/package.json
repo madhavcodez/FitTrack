@@ -1,27 +1,46 @@
 {
-  "name": "fittrack-backend",
+  "name": "fittrack-backend-api",
   "version": "1.0.0",
-  "description": "Backend API for FitTrack fitness application",
-  "main": "src/index.js",
+  "description": "Backend API for FitTrack - AI-powered fitness tracking app",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "test": "jest"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev:api": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .ts",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "firebase-admin": "^11.11.0",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^7.2.1",
+    "firebase-admin": "^11.11.1",
+    "helmet": "^4.6.0",
+    "joi": "^17.4.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.5.0",
-    "bcryptjs": "^2.4.3",
-    "express-validator": "^7.0.1",
-    "socket.io": "^4.7.2"
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
-    "jest": "^29.6.2",
-    "nodemon": "^3.0.1",
-    "supertest": "^6.3.3"
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.1",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^16.7.10",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "jest": "^27.1.0",
+    "supertest": "^6.1.6",
+    "ts-jest": "^27.0.5",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
   }
-} 
+}

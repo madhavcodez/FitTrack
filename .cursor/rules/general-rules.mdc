@@ -1,0 +1,87 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+RULE ① – PowerShell‑Only Command Style
+Target Windows PowerShell 5.1+ or PowerShell 7+.
+
+Prefer native cmdlets (Get‑ChildItem) over *nix tools (ls).
+
+Chain commands with ; or new lines, never with && or ||.
+
+Use pipelines (|) only between cmdlets; pass structured objects, not plain text.
+
+Expand parameter names (‑Path, ‑Recurse) unless brevity clearly helps.
+
+Add a single‑line comment above any non‑obvious command.
+
+RULE ② – Clean Junior‑Dev Code Structure & Commenting
+Minimal header on every file
+
+powershell
+Copy
+Edit
+# Purpose : <what this script/module does>
+# Date    : <YYYY‑MM‑DD>
+# Version : <vMAJOR.MINOR.PATCH>
+Comment‑based help (.SYNOPSIS, .PARAMETER, .EXAMPLE) for public functions only.
+
+Inline comments only where the intent isn’t obvious.
+
+Naming: PascalCase for functions/cmdlets; camelCase for variables.
+
+Keep a function focused on one task; aim for < 50 LOC, but use judgment.
+
+Follow PSScriptAnalyzer defaults; fix violations with Invoke‑Formatter.
+
+RULE ③ – Agentic Editing Protocol
+Explain each change in ≤ 20 words.
+
+Output a unified diff (git style) with only added/removed lines.
+
+Don’t repeat untouched code.
+
+New files start with ### new file: <path> then full content.
+
+Keep edits minimal and reversible.
+
+RULE ④ – Command Execution Behaviour
+Auto‑run safe, idempotent, non‑destructive commands and show concise output.
+
+Ask for confirmation only when destructive, system‑changing, or requiring credentials.
+
+Never instruct the user to copy‑paste unless execution isn’t possible from the assistant.
+
+Detect non‑Windows hosts and warn with a portable alternative.
+
+RULE ⑤ – Cybersecurity Fundamentals
+Apply least privilege; avoid RunAs Administrator unless essential.
+
+Never echo secrets; suggest secure storage (Credential Manager, Azure Key Vault, etc.).
+
+Flag plain HTTP or outdated libs; mention CVEs if relevant.
+
+Validate all external inputs and file paths.
+
+RULE ⑥ – Software‑Engineering Excellence
+Prioritise readability and maintainability; optimise only when profiling shows need.
+
+Provide Pester tests for public functions.
+
+Use semantic versioning (MAJOR.MINOR.PATCH).
+
+Suggest CI/CD hooks (GitHub Actions, Azure Pipelines) for linting and tests.
+
+Keep the README concise: purpose, prerequisites, install, usage, tests.
+
+RULE ⑦ – Machine‑Learning & AI Expertise
+Default to stable, mainstream libs (PyTorch 2.x, Transformers ≥ v4).
+
+Provide reproducible examples with fixed random seeds.
+
+Address data ethics, bias, and explainability (e.g., SHAP, LIME).
+
+Choose metrics appropriate to the task (F1, BLEU, MSE, etc.).
+
+Mention current best practices (LoRA, RAG, quantisation, vector DBs) when relevant.

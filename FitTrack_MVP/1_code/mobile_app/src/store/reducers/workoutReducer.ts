@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Workout } from '../api';
 
 interface Exercise {
   name: string;
@@ -11,23 +12,6 @@ interface Exercise {
     feedback: string;
     score: number;
   }>;
-}
-
-interface Workout {
-  id: string;
-  name: string;
-  type: 'strength' | 'cardio' | 'flexibility' | 'hiit';
-  exercises: Exercise[];
-  duration: number;
-  caloriesBurned?: number;
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
-  date: Date;
-  notes?: string;
-  aiFeedback?: {
-    overallScore: number;
-    suggestions: string[];
-    improvements: string[];
-  };
 }
 
 interface WorkoutState {
@@ -53,49 +37,48 @@ const workoutSlice = createSlice({
       state.error = null;
     },
     fetchWorkoutsSuccess: (state, action: PayloadAction<Workout[]>) => {
-      state.loading = false;
       state.workouts = action.payload;
+      state.loading = false;
       state.error = null;
     },
     fetchWorkoutsFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
-    setCurrentWorkout: (state, action: PayloadAction<Workout>) => {
+    fetchWorkoutStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchWorkoutSuccess: (state, action: PayloadAction<Workout>) => {
       state.currentWorkout = action.payload;
+      state.loading = false;
+      state.error = null;
+    },
+    fetchWorkoutFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
     },
     addWorkout: (state, action: PayloadAction<Workout>) => {
       state.workouts.push(action.payload);
     },
     updateWorkout: (state, action: PayloadAction<Workout>) => {
-      const index = state.workouts.findIndex(w => w.id === action.payload.id);
+      const index = state.workouts.findIndex(
+        (workout) => workout._id === action.payload._id
+      );
       if (index !== -1) {
         state.workouts[index] = action.payload;
       }
-    },
-    deleteWorkout: (state, action: PayloadAction<string>) => {
-      state.workouts = state.workouts.filter(w => w.id !== action.payload);
-    },
-    addFormFeedback: (state, action: PayloadAction<{
-      workoutId: string;
-      exerciseIndex: number;
-      feedback: {
-        timestamp: Date;
-        feedback: string;
-        score: number;
-      };
-    }>) => {
-      const { workoutId, exerciseIndex, feedback } = action.payload;
-      const workout = state.workouts.find(w => w.id === workoutId);
-      if (workout && workout.exercises[exerciseIndex]) {
-        if (!workout.exercises[exerciseIndex].formFeedback) {
-          workout.exercises[exerciseIndex].formFeedback = [];
-        }
-        workout.exercises[exerciseIndex].formFeedback?.push(feedback);
+      if (state.currentWorkout && state.currentWorkout._id === action.payload._id) {
+        state.currentWorkout = action.payload;
       }
     },
-    clearError: (state) => {
-      state.error = null;
+    deleteWorkout: (state, action: PayloadAction<string>) => {
+      state.workouts = state.workouts.filter(
+        (workout) => workout._id !== action.payload
+      );
+      if (state.currentWorkout && state.currentWorkout._id === action.payload) {
+        state.currentWorkout = null;
+      }
     },
   },
 });
@@ -104,12 +87,12 @@ export const {
   fetchWorkoutsStart,
   fetchWorkoutsSuccess,
   fetchWorkoutsFailure,
-  setCurrentWorkout,
+  fetchWorkoutStart,
+  fetchWorkoutSuccess,
+  fetchWorkoutFailure,
   addWorkout,
   updateWorkout,
   deleteWorkout,
-  addFormFeedback,
-  clearError,
 } = workoutSlice.actions;
 
-export default workoutSlice.reducer; 
+export const workoutReducer = workoutSlice.reducer; 
