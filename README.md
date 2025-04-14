@@ -1,7 +1,7 @@
 # FitTrack
 
 <div align="center">
-  <img src="FitTrack_MVP/1_code/fittrack-expo/assets/icon.png" alt="FitTrack Logo" width="150"/>
+  <img src="docs/screenshots/logo.png" alt="FitTrack Logo" width="150"/>
   <h3>AI-Powered Fitness Companion</h3>
 </div>
 
@@ -30,10 +30,10 @@
       <td align="center"><strong>Form Analysis</strong></td>
     </tr>
     <tr>
-      <td><img src="docs/screenshots/dashboard.jpg" alt="Dashboard" width="200"/></td>
-      <td><img src="docs/screenshots/workout.jpg" alt="Log Workout" width="200"/></td>
-      <td><img src="docs/screenshots/nutrition.jpg" alt="Track Nutrition" width="200"/></td>
-      <td><img src="docs/screenshots/form.jpg" alt="Form Analysis" width="200"/></td>
+      <td><img src="docs/screenshots/home.png" alt="Dashboard" width="200"/></td>
+      <td><img src="docs/screenshots/log-workout.png" alt="Log Workout" width="200"/></td>
+      <td><img src="docs/screenshots/add-food.png" alt="Track Nutrition" width="200"/></td>
+      <td><img src="docs/screenshots/analyze-form.png" alt="Form Analysis" width="200"/></td>
     </tr>
   </table>
 </div>
