@@ -1,8 +1,11 @@
-# 🏋️‍♂️ FitTrack - AI-Powered Fitness Companion
+# FitTrack
 
 <div align="center">
+  <img src="FitTrack_MVP/1_code/fittrack-expo/assets/icon.png" alt="FitTrack Logo" width="150"/>
+  <h3>AI-Powered Fitness Companion</h3>
+</div>
 
-![FitTrack Banner](FitTrack_MVP/1_code/fittrack-expo/assets/images/banner.png)
+<div align="center">
 
 [![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactnative.dev/)
 [![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)](https://expo.dev/)
@@ -14,6 +17,25 @@
 
 [Getting Started](#getting-started) • [Features](#features) • [Architecture](#architecture) • [Documentation](#documentation) • [Contributing](#contributing)
 
+</div>
+
+## 📱 App Showcase
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><strong>Dashboard</strong></td>
+      <td align="center"><strong>Log Workout</strong></td>
+      <td align="center"><strong>Track Nutrition</strong></td>
+      <td align="center"><strong>Form Analysis</strong></td>
+    </tr>
+    <tr>
+      <td><img src="docs/screenshots/dashboard.jpg" alt="Dashboard" width="200"/></td>
+      <td><img src="docs/screenshots/workout.jpg" alt="Log Workout" width="200"/></td>
+      <td><img src="docs/screenshots/nutrition.jpg" alt="Track Nutrition" width="200"/></td>
+      <td><img src="docs/screenshots/form.jpg" alt="Form Analysis" width="200"/></td>
+    </tr>
+  </table>
 </div>
 
 ## 🚀 Features
